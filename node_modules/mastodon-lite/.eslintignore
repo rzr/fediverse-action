@@ -1,0 +1,4 @@
+# .eslintignore
+**/iotjs_modules/
+**/node_modules/
+tmp/
