@@ -1,0 +1,30 @@
+{
+  "name": "fediverse-action",
+  "version": "0.0.0",
+  "description": "Post to fediverse from github",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Philippe Coval <rzr@users.sf.net> (https://purl.org/rzr)",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rzr/fediverse-action.git"
+  },
+  "homepage": "https://purl.org/rzr/mastodon-lite",
+  "dependencies": {
+    "@actions/core": "^1.2.3",
+    "@actions/github": "^2.1.1",
+    "mastodon-lite": "0.0.20"
+  },
+  "keywords": [
+    "activitypub",
+    "mastodon",
+    "microblogging",
+    "github-action"
+  ],
+  "bugs": {
+    "url": "https://github.com/rzr/fediverse-action/issues"
+  }
+}
