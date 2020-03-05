@@ -1,0 +1,65 @@
+#+TITLE: fediverse-action
+#+AUTHOR: Philippe Coval <https://purl.org/rzr/>
+#+EMAIL: rzr@users.sf.net
+
+* Fediverse-Action Documentation:
+** About:
+  Post notification to fediverse social web when code is updated.
+  Curently it was tested with Mastodon service,
+  Support for other activity pub services like pleroma or GNUsocial
+  is also welcome.
+
+[[https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Fediverse_logo_proposal.svg/330px-Fediverse_logo_proposal.svg.png]]
+
+** Usage:
+*** Join fediverse
+   - If you didn't before register to an instance of mastodon network:
+     - example: https://mastodon.social
+   - Once registered, go to settings page to create an application:
+     - example: https://mastodon.social/settings/profile
+   - Go to "Settings" / "Development" / "New Application"
+     - example: https://mastodon.social/settings/applications/new
+   - Fill application name: mastodon-lite (or anything else), ignore other fields
+   - Submit to generate application
+     - example: https://mastodon.social/settings/applications
+   - Go to application details and note "access token"
+     - example: "B4DC0D-DeadBeef1BadCode-1TODO_1TODOtodoTODO"
+*** Add secret to github
+   - From your project page:
+     - https://github.com/${org}/${project}/settings/secrets
+   - Add new secret with name "MASTODON_ACCESS_TOKEN"
+     and the previous encoded string as value.
+*** Commit config file
+
+Back to your project import config file:
+
+#+BEGIN_SRC sh
+mkdir -p .github/workflows/
+curl -O https://raw.githubusercontent.com/rzr/fediverse-action/master/.github/workflows/mastodon-lite.yml
+git commit -sm 'github: Add fediverse-action' .github/workflows/fediverse-action.yml
+#+END_SRC
+
+*** Update yml
+
+Default "mastodon.social" server will be used unless you override a host value:
+
+#+BEGIN_SRC yml
+name: fediverse-action
+on: [push]
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: rzr/fediverse-action@master
+        with:
+          message: "https://github.com/rzr/mastodon-lite/# #Fediverse update from #GitHub Action"
+          access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          host: "mamot.fr"
+#+END_SRC
+
+** Resources:
+  - <https://github.com/rzr/mastodon-lite/>
+  - <https://help.github.com/en/actions/building-actions/creating-a-javascript-action>
+  - <https://github.com/rzr/webthing-iotjs/wiki/Social>
+  - <https://en.wikipedia.org/wiki/Fediverse>
+  - <https://github.com/features/actions>
