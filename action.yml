@@ -1,0 +1,23 @@
+name: 'fediverse-action'
+description: 'Post a message to fediverse from GitHub action'
+author: 'Philippe Coval <http://purl.org/rzr/>'
+inputs:
+  message:
+    description: 'Message to post to fediverse'
+    default: >
+      https://github.com/rzr/fediverse-action/# #Fediverse update from #GitHub
+  access-token:
+    description: >
+      Application access token, generated from mastodon dashboard.
+  host:
+    default: "mastodon.social"
+  port:
+    default: "443"
+  api:
+    default: "/api/v1"
+output:
+  status:
+    description: 'Server response'
+runs:
+  using: "node12"
+  main: "index.js"
