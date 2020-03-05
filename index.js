@@ -30,8 +30,8 @@ try {
   app.mastodon = new Mastodon(app.config);
   const message = core.getInput('message');
   app.mastodon.post(message, (err, status) => {
-    if (err) {
-      return core.setFailed(err);
+    if (err || status.error) {
+      return core.setFailed(err || status.error);
     } else {
       console.log(status);
       core.setOutput('status', `succeed: ${status}`);
