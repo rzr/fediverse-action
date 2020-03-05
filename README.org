@@ -35,8 +35,11 @@ Back to your project import config file:
 
 #+BEGIN_SRC sh
 mkdir -p .github/workflows/
-curl -O https://raw.githubusercontent.com/rzr/fediverse-action/master/.github/workflows/mastodon-lite.yml
-git commit -sm 'github: Add fediverse-action' .github/workflows/fediverse-action.yml
+file=".github/workflows/fediverse-action.yml"
+curl -o "$file" \
+  "https://raw.githubusercontent.com/rzr/fediverse-action/master/$file"
+git add "$file"
+git commit -sm 'github: Add fediverse-action' "$file"
 #+END_SRC
 
 *** Update yml
@@ -63,3 +66,9 @@ jobs:
   - <https://github.com/rzr/webthing-iotjs/wiki/Social>
   - <https://en.wikipedia.org/wiki/Fediverse>
   - <https://github.com/features/actions>
+  - <https://www.npmjs.com/package/fediverse-action>
+  - <https://github.community/t5/GitHub-Actions/bd-p/actions>
+  - <https://lab.github.com/githubtraining/github-actions:-continuous-delivery>
+  - <https://mastodon.social/@rzr/103772277257320621#fediverse-action>
+  - <https://github.com/rzr/mastodon-lite/blob/master/.github/workflows/fediverse-action.yml>
+  - <https://mastodon.social/@rzr/103772576183594794#mastodon-lite>
