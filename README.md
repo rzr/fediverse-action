@@ -51,7 +51,9 @@ git push
 ```
 
 Then check action's status on github, a message should then appear on
-your fediverse profile.
+your fediverse profile, something like:
+
+*    <https://mastodon.social/@rzr/103772616301851818>
 
 ### Customize yml
 
@@ -107,4 +109,8 @@ Resources:
 -   <https://github.com/rzr/mastodon-lite/blob/master/.github/workflows/fediverse-action.yml>
 -   <https://mastodon.social/@rzr/103772576183594794#mastodon-lite>
 
-![](https://pbs.twimg.com/media/ESZE74mXkAEojrH?format=jpg&name=medium#./file/githubhackaton.jpg)
+[![fediverse-action](
+https://pbs.twimg.com/media/ESZE74mXkAEojrH?format=jpg&name=medium#./file/githubhackaton.jpg
+)](
+https://twitter.com/RzrFreeFr/status/1235750998364352512#fediverse-action#
+"fediverse-action")
