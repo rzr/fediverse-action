@@ -1,29 +1,29 @@
 # YAML
 ---
-name: 'fediverse-action'
+name: fediverse-action
 description: >
-  'Post a message to fediverse from GitHub action, Mastodon social web is supported other activitypub services are also welcome'
+  Post to fediverse from GitHub action, supports Mastodon activitypub
 author: 'Philippe Coval <http://purl.org/rzr/>'
 inputs:
   message:
-    description: 'Message to post to fediverse'
+    description: Message to post to fediverse
     default: >
-      https://github.com/rzr/fediverse-action/# #Fediverse update from #GitHub from @rzr@mastodon.social
+      https://github.com/rzr/fediverse-action/# #Fediverse update from #GitHub
   access-token:
     description: >
       Application access token, generated from mastodon dashboard.
   host:
-    default: "mastodon.social"
+    default: 'mastodon.social'
   port:
-    default: "443"
+    default: '443'
   api:
-    default: "/api/v1"
+    default: '/api/v1'
 output:
   status:
     description: 'Server response'
 runs:
-  using: "node12"
-  main: "index.js"
+  using: 'node12'
+  main: 'index.js'
 branding:
   icon: 'speaker'
   color: 'blue'
