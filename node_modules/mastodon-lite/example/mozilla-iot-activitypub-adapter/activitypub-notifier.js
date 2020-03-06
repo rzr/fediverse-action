@@ -1,7 +1,7 @@
-// -*- mode: js; js-indent-level:2;  -*-
-// SPDX-License-Identifier: MPL-2.0
+/* -*- mode: js; js-indent-level:2;  -*-
+   SPDX-License-Identifier: MPL-2.0 */
 /**
- * activitypub-notifier.js - ActivityPub notifier.
+ * Activitypub-notifier.js - ActivityPub notifier.
  */
 const manifest = require('./manifest.json');
 const mastodon = require('mastodon-lite');
@@ -10,7 +10,7 @@ const {
   Constants,
   Database,
   Notifier,
-  Outlet,
+  Outlet
 } = require('gateway-addon');
 
 const config = {
@@ -18,7 +18,7 @@ const config = {
   api: '/api/v1',
   hostname: 'mastodon.social',
   port: 443,
-  rejectUnauthorized: false,
+  rejectUnauthorized: false
 };
 
 function createTransport() {
@@ -29,13 +29,14 @@ function message() {
   return {
     name: 'message',
     metadata: {
-      type: 'string',
-    },
+      type: 'string'
+    }
   };
 }
 
 function post(message) {
   const transport = createTransport();
+
   return new Promise(function(resolve, reject) {
     transport.post(message, (err, response) => {
       if (err || !response) {
@@ -54,18 +55,16 @@ class ActivityPubOutlet extends Outlet {
   }
 
   async notify(title, message, level) {
-    console.log(
-      `Posting message "${message}", and level "${level}"`
-    );
+    console.log(`Posting message "${message}", and level "${level}"`);
 
     switch (level) {
-    case Constants.NotificationLevel.LOW:
-    case Constants.NotificationLevel.NORMAL:
-      title = `(NOTICE) ${title}`;
-      break;
-    case Constants.NotificationLevel.HIGH:
-      title = `(ALERT) ${title}`;
-      break;
+      case Constants.NotificationLevel.LOW:
+      case Constants.NotificationLevel.NORMAL:
+        title = `(NOTICE) ${title}`;
+        break;
+      case Constants.NotificationLevel.HIGH:
+        title = `(ALERT) ${title}`;
+        break;
     }
 
     await post(message);
@@ -83,15 +82,15 @@ class ActivityPubNotifier extends Notifier {
     addonManager.addNotifier(this);
 
     const db = new Database(manifest.id);
-    db.open().then(() => {
-      return db.loadConfig();
-    }).then((cfg) => {
-      Object.assign(config, cfg);
+    db.open().then(() => db.loadConfig()).
+      then((cfg) => {
+        Object.assign(config, cfg);
 
-      if (!this.outlets['activitypub-sender-0']) {
-        this.handleOutletAdded(new ActivityPubOutlet(this, 'activitypub-sender-0'));
-      }
-    }).catch(console.error);
+        if (!this.outlets['activitypub-sender-0']) {
+          this.handleOutletAdded(new ActivityPubOutlet(this, 'activitypub-sender-0'));
+        }
+      }).
+      catch(console.error);
   }
 }
 

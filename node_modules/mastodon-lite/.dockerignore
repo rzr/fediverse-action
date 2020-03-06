@@ -1,23 +1,11 @@
-*~
+# .dockerignore
 Dockerfile
-.git/
 
-#{ [[./.gitignore]]
-# Standard artifacts
-*.swp
-.DS_Store
-.nyc_output/
-.cache-loader/
-
-# Build artifacts
-/build
-node_modules/
-static/js/lib/stm_web.min.js
-
-# Run-time artifacts
-.node-persist/
-config/local.js
-static/uploads
-.post_upgrade_complete
-/browser-test-output
-#} [[./.gitignore]]
+# .gitignore
+*~
+*.tmp
+**/tmp/
+npm-debug.log
+**/node_modules/
+**/iotjs_modules/
+**/.mastodon-lite*.json

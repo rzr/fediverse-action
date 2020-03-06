@@ -6,6 +6,7 @@ module.exports = {
     "parserOptions": {
         "ecmaVersion": 5
     },
+    "ignorePatterns": [ "**/mozilla-iot-*-adapter/*.js"],
     "rules": {
         "accessor-pairs": "error",
         "array-bracket-newline": "error",

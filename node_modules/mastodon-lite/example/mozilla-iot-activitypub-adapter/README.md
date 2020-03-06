@@ -19,7 +19,11 @@ with Mozilla Thing project, check this wiki page from insights:
 
 ### JOIN FEDIVERSE: ###
 
-This is previously explained in [[../../README.md][mastodon-lite's README]]
+This is previously explained in 
+
+[mastodon-lite's README](
+https://github.com/rzr/mastodon-lite/blob/master/README.md
+)
 
 * If you didn't before register to an instance of mastodon network:
   * example: <https://mastodon.social>

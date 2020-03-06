@@ -1,6 +1,6 @@
 {
   "name": "mastodon-lite-webthing",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "description": "Mastodon WebOfThing Actuator example",
   "main": "index.js",
   "scripts": {

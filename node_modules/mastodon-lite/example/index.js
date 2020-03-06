@@ -33,14 +33,17 @@ if (module.parent === null) {
     api: '/api/v1',
     rejectUnauthorized: false
   };
+  if (process.env.MASTODON_ACCESS_TOKEN) {
+    app.config.access_token = process.env.MASTODON_ACCESS_TOKEN;
+  }
 
   try {
     app.config = JSON.parse(fs.readFileSync(app.file, 'utf8'));
   } catch (err) {
     fs.writeFileSync(app.file, JSON.stringify(app.config, null, 2));
-    console.log('error: TODO: edit configuration file ' + app.file);
-    process.exit(0);
+    console.log('warning: TODO: edit configuration file ' + app.file);
   }
+
   app.mastodon = new Mastodon(app.config);
   app.mastodon.request(process.argv.slice(2), function(err, data) {
     if (err) throw err;
