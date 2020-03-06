@@ -1,3 +1,5 @@
+# YAML
+---
 name: fediverse-action
 on: [push]
 jobs:
