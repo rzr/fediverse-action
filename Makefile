@@ -14,7 +14,7 @@ help:
 	@echo "# make release"
 	@echo "# make update"
 
-all build:
+all build: lint
 	@echo "# log: $@: $^"
 
 update:
@@ -26,8 +26,11 @@ update:
 	-git add node_modules
 	-git commit -sm 'npm: Upgrade shipped modules' node_modules
 
-release: update
+release: lint update
 	npm version patch
 	@echo "# TODO: Set 'Release X.Y.Z' as commit message"
 	git rebase -i HEAD~1
 	@echo "# TODO: git push"
+
+lint: action.yml .github/workflows/fediverse-action.yml
+	yamllint -f standard $^
