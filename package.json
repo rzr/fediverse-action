@@ -1,6 +1,6 @@
 {
   "name": "fediverse-action",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Post to fediverse from github",
   "main": "index.js",
   "scripts": {
