@@ -27,18 +27,22 @@ Usage:
 -   Submit to generate application
     -   example: <https://mastodon.social/settings/applications>
 -   Go to application details and note "access token"
-    -   example: "B4DC0D-DeadBeef1BadCode-1TODO~1TODOtodoTODO~"
+    -   example: "B4DC0D-DeadBeef1BadCode-1TODO-1TODOtodoTODO"
 
 ### Add secret to github
 
 -   From your project page:
-    -   <https://github.com/$%7Borg%7D/$%7Bproject%7D/settings/secrets>
--   Add new secret with name "MASTODON~ACCESSTOKEN~" and the previous
+    -   <https://github.com/${org}/${project}/settings/secrets>
+-   Add new secret with name "MASTODON_ACCESS_TOKEN" and the previous
     encoded string as value.
 
 ### Commit config file
 
-Back to your project import config file:
+Back to your project create ".github/workflows/fediverse-action.yml" config file using this template:
+
+*    <https://raw.githubusercontent.com/rzr/fediverse-action/master/.github/workflows/fediverse-action.yml>
+
+From shell you can paste:
 
 ``` {.bash org-language="sh"}
 mkdir -p .github/workflows/
