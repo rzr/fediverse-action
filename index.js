@@ -1,7 +1,7 @@
 // -*- mode: js; js-indent-level:2;  -*-
-// Copyright 2020-present Philippe Coval <http://purl.org/rzr/>
-// SPDX-Licence: ISC
+// SPDX-Licence-Identider: ISC
 // SPDX-Licence-URL: https://spdx.org/licenses/ISC.txt
+// Copyright: 2020-present Philippe Coval <http://purl.org/rzr/>
 
 const core = require('@actions/core');
 const github = require('@actions/github');
