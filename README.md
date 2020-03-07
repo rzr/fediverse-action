@@ -1,13 +1,34 @@
-Fediverse-Action Documentation:
-===============================
+Fediverse-Action:
+=================
+
+[![GitHub forks](
+https://img.shields.io/github/forks/rzr/fediverse-action.svg?style=social&label=Fork&maxAge=2592000
+)](
+https://GitHub.com/rzr/fediverse-action/network/
+)
+[![License](
+https://img.shields.io/badge/license-ISC-blue.svg?style=flat
+)](
+LICENSE
+)
+[![NPM](
+https://img.shields.io/npm/v/fediverse-action.svg
+)](
+https://www.npmjs.com/package/fediverse-action
+)
+[![dependencies Status](
+https://david-dm.org/rzr/fediverse-action/status.svg
+)](
+https://david-dm.org/rzr/fediverse-action
+)
 
 About:
 ------
 
 Post notification to fediverse social web when code is updated.
-Currently
-it was tested with Mastodon service, Support for other activity pub
-services like pleroma or GNUsocial is also welcome.
+Currently it was tested with Mastodon service,
+Support for other ActivityPub services
+like pleroma or GNUsocial is also welcome.
 
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Fediverse_logo_proposal.svg/330px-Fediverse_logo_proposal.svg.png)
 
@@ -38,28 +59,30 @@ Usage:
 
 ### Commit config file
 
-Back to your project create ".github/workflows/fediverse-action.yml" config file using this template:
+To enable action a configuration file should be located in ".github":
 
-*    <https://raw.githubusercontent.com/rzr/fediverse-action/master/.github/workflows/fediverse-action.yml>
+-    <https://raw.githubusercontent.com/rzr/fediverse-action/master/.github/workflows/fediverse-action.yml>
 
-From shell you can paste:
+Back to your project you can create ".github/workflows/fediverse-action.yml" file by applying this patch from shell:
 
 ``` {.bash org-language="sh"}
-mkdir -p .github/workflows/
-file=".github/workflows/fediverse-action.yml"
-curl -o "$file" \
-  "https://raw.githubusercontent.com/rzr/fediverse-action/master/$file"
-git add "$file"
-git commit -sm 'github: Add fediverse-action' "$file"
+curl "https://github.com/rzr/fediverse-action/commit/40dc4bccfb3d8b6efd26327a412b73bbe2f7113d.patch"  | git am
 git push
 ```
 
-Then check action's status on github, a message should then appear on
-your fediverse profile, something like:
+Or pick it from:
 
-*    <https://mastodon.social/@rzr/103772616301851818>
+-   <https://github.com/rzr/fediverse-action/commit/40dc4bccfb3d8b6efd26327a412b73bbe2f7113d.patch>
 
-### Customize yml
+Then check action's status on github,
+a default message should then appears on
+a mastodon.social profile, something like:
+
+-    <https://mastodon.social/@tizenhelper/103781386501900694>
+-    <https://mastodon.social/tags/FediVerseAction>
+
+
+### Customize config file
 
 The default config file will post on each push, if you something less
 verbose you can filter on release only.
@@ -95,7 +118,24 @@ Feel free to also pin version to latest release (-"@master" +"@vX.Y.Z"):
 
 -   <https://github.com/marketplace/actions/fediverse-action>
 
+Community:
+----------
 
+Projects using fediverse-action:
+
+-   <https://github.com/rzr/fediverse-action/blob/master/.github/workflows/fediverse-action.yml>
+    -    <https://mastodon.social/@tizenhelper/103781386501900694>
+
+Feel free to add your config file and relative post to this list:
+
+-   <https://github.com/abandonware/node-eddystone-beacon-scanner/blob/master/.github/workflows/fediverse-action.yml>
+    -    <https://mastodon.social/@tizenhelper/103781987207513944>
+-   <https://github.com/rzr/iotjs-async/blob/master/.github/workflows/fediverse-action.yml>
+    -    <https://mastodon.social/@tizenhelper/103775679164369666>
+-   <https://github.com/rzr/mastodon-lite/blob/master/.github/workflows/fediverse-action.yml>
+    -    <https://mastodon.social/@rzr/103771440856951663>
+-   <https://github.com/rzr/twins/blob/master/.github/workflows/fediverse-action.yml>
+    -    <https://mastodon.social/@rzr/103781317496412496>
 
 Resources:
 ----------
@@ -112,6 +152,8 @@ Resources:
 -   <https://mastodon.social/@rzr/103772277257320621#fediverse-action>
 -   <https://github.com/rzr/mastodon-lite/blob/master/.github/workflows/fediverse-action.yml>
 -   <https://mastodon.social/@rzr/103772576183594794#mastodon-lite>
+-   <https://www.reddit.com/r/fediverse/comments/fek66r/fediverseaction_post_to_fediverse_from_github/>
+-   <https://www.linkedin.com/feed/update/urn:li:activity:6641985314296598528>
 
 [![fediverse-action](
 https://pbs.twimg.com/media/ESZE74mXkAEojrH?format=jpg&name=medium#./file/githubhackaton.jpg
