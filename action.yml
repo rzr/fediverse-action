@@ -2,13 +2,13 @@
 ---
 name: fediverse-action
 description: >
-  Post to fediverse from GitHub action, supports Mastodon activitypub
+  Post to FediVerse from GitHub action, supports Mastodon ActivityPub
 author: 'Philippe Coval <http://purl.org/rzr/>'
 inputs:
   message:
     description: Message to post to fediverse
     default: >
-      https://github.com/rzr/fediverse-action/# #Fediverse update from #GitHub
+      https://github.com/rzr/fediverse-action/# #FediVerseAction has been triggered from github
   access-token:
     description: >
       Application access token, generated from mastodon dashboard.
