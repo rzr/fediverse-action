@@ -59,14 +59,15 @@ Usage:
 
 ### Commit config file
 
-To enable action a configuration file should be located in ".github":
+To enable this "action" in any of your github hosted project,
+a configuration file should be located in ".github/workflow/" subdir, just like:
 
 -    <https://raw.githubusercontent.com/rzr/fediverse-action/master/.github/workflows/fediverse-action.yml>
 
 Back to your project you can create ".github/workflows/fediverse-action.yml" file by applying this patch from shell:
 
 ``` {.bash org-language="sh"}
-curl "https://github.com/rzr/fediverse-action/commit/40dc4bccfb3d8b6efd26327a412b73bbe2f7113d.patch"  | git am
+curl "https://github.com/rzr/fediverse-action/commit/40dc.patch"  | git am
 git push
 ```
 
@@ -76,24 +77,63 @@ Or pick it from:
 
 Then check action's status on github,
 a default message should then appears on
-a mastodon.social profile, something like:
+a "mastodon.social" profile, something like:
 
--    <https://mastodon.social/@tizenhelper/103781386501900694>
+-    <https://mastodon.social/@rzr/103810893109434514>
 -    <https://mastodon.social/tags/FediVerseAction>
 
+Note default "mastodon.social" server will be used
+unless you override a host value:
+
+``` {.yml}
+        with:
+          access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+	            host: "social.bau-ha.us" # custom host if not "mastodon.social" (default)
+```
+
+Example:
+-    <https://github.com/Tarnyko/test-mastodon/commit/414d3191c5a394caac5ed67fe40de24caf063498>
+
+Default message will link to your repo URL.
 
 ### Customize config file
 
-The default config file will post on each push, if you something less
-verbose you can filter on release only.
+Apply this change to update message with top commit line:
 
-Note default "mastodon.social" server will be used unless you override
-a host value:
+```sh
+curl https://github.com/abandonware/bmp085-sensor/commit/5701e5c3.patch | git am
+```
+
+-    <https://github.com/abandonware/bmp085-sensor/commit/5701e5c3e0773fedc65b5477a45005783a30cb63>
+
+``` {.yml}
+(...)
+    steps:
+      - uses: actions/checkout@v1
+      - id: log
+        run: echo "::set-output name=message::$(git log --no-merges -1 --oneline)"
+      - uses: rzr/fediverse-action@master
+        with:
+          access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          message: "https://github.com/${{ github.repository }}# ${{ steps.log.outputs.message }} ~ #FediVerseAction"
+```
+
+Examples:
+
+-    <https://github.com/abandonware/bmp085-sensor/commit/5701e5c3e0773fedc65b5477a45005783a30cb63>
+-    <https://mastodon.social/@tizenhelper/103810982954496420>
+
+If you need to be less verbose you can filter on "Release x.y.z" commit messages only:
+
+-    <https://github.com/abandonware/node-i2c/commit/1837c8111e5d5bb609824a5981716cbfc28a05cd.patch>
+-    <https://github.com/abandonware/node-i2c/commit/16ce8ec0796efa723079a5103791e57cfe13652b>
+-    <https://github.com/rzr/pinball-table-hurd/commit/53f85ccab02c9820e34edbc937c8f358c9b8ec83>
+
+As a reference, config file should look like this:
 
 ``` {.yml}
 # YAML
 ---
-
 name: fediverse-action
 on: [push]
 jobs:
@@ -107,8 +147,11 @@ jobs:
         uses: rzr/fediverse-action@master
         with:
           access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
-          message: "https://github.com/marketplace/actions/fediverse-action# #FediverseAction has just been triggered on my repo thx @rzr@mastodon.social"
+          message: "https://github.com/${{ github.repository }}# ${{ steps.log.outputs.message }} ~ #FediVerseAction"
+	  host: "mamot.fr" # If not using default "mastodon.social"
 ```
+
+Feel free to replace "message" input with anything.
 
 You can get inspired from this reference config file:
 
