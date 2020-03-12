@@ -34,3 +34,6 @@ release: lint update
 
 lint: action.yml .github/workflows/fediverse-action.yml
 	yamllint -f standard $^
+
+mdl: README.md
+	${@} $<
