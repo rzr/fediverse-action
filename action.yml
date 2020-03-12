@@ -8,7 +8,7 @@ inputs:
   message:
     description: Message to post to fediverse
     default: >
-      https://github.com/rzr/fediverse-action/# #FediVerseAction has been triggered from github
+      https://github.com/${{ github.repository }}# has been updated ~ #FediVerseAction
   access-token:
     description: >
       Application access token, generated from mastodon dashboard.
