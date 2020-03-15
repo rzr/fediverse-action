@@ -36,9 +36,10 @@ like pleroma or GNUsocial is also welcome.
 
 - If you didn't before register to an instance of mastodon network:
   - example: <https://mastodon.social>
-- Once registered, go to settings page to create an application:
+- Once registered and logged, go to settings page to create an application:
   - example: <https://mastodon.social/settings/profile>
 - Go to "Settings" / "Development" / "New Application"
+  - example: <https://mastodon.social/settings/applications/>
   - example: <https://mastodon.social/settings/applications/new>
 - Fill application name: mastodon-lite (or anything else),
   ignore  other fields
@@ -65,7 +66,7 @@ Back to your project you can create ".github/workflows/fediverse-action.yml"
 file by applying this patch from shell:
 
 ``` {.bash org-language="sh"}
-curl "https://github.com/rzr/fediverse-action/commit/40dc.patch"  | git am
+curl "https://github.com/rzr/color-sensor-js/commit/867de15f.patch"  | git am
 git push
 ```
 
@@ -77,7 +78,7 @@ Then check action's status on github,
 a default message should then appears on
 a "mastodon.social" profile, something like:
 
-- <https://mastodon.social/@rzr/103810893109434514>
+- <https://mastodon.social/@tizenhelper/103781386501900694>
 - <https://mastodon.social/tags/FediVerseAction>
 
 Note default "mastodon.social" server will be used
@@ -95,15 +96,18 @@ Example:
 
 Default message will link to your repo URL.
 
-### Customize config file ###
+### Customize commit message ###
 
-Apply this change to update message with top commit line:
+Once posting is verified,
+then apply this next change to overload default message
+with your project's latest git commit message.
 
 ```sh
-curl https://github.com/abandonware/bmp085-sensor/commit/5701e5c3.patch | git am
+curl "https://github.com/rzr/color-sensor-js/commit/cb4512fe.patch" | git am
+git push
 ```
 
-- <https://github.com/abandonware/bmp085-sensor/commit/5701e5c3e0773fedc65b5477a45005783a30cb63>
+- <https://github.com/abandonware/bmp085-sensor/commit/5701e5c3>
 
 ``` {.yml}
 (...)
@@ -114,8 +118,10 @@ curl https://github.com/abandonware/bmp085-sensor/commit/5701e5c3.patch | git am
       - uses: rzr/fediverse-action@master
         with:
           access-token: ${{ secrets.MASTODON_ACCESS_TOKEN }}
-          message: "https://github.com/${{ github.repository }}# ${{ steps.log.outputs.message }} ~ #FediVerseAction"
+          message: "https://github.com/${{ github.repository }}/commit/${{ steps.log.outputs.message }} ~ #FediVerseAction"
 ```
+
+Feel free to edit "message" input with anything you prefer.
 
 Examples:
 
@@ -151,8 +157,6 @@ jobs:
           host: "mamot.fr" # If not using default "mastodon.social"
 ```
 
-Feel free to replace "message" input with anything.
-
 You can get inspired from this reference config file:
 
 - <https://raw.githubusercontent.com/rzr/mastodon-lite/master/.github/workflows/fediverse-action.yml>
@@ -160,6 +164,15 @@ You can get inspired from this reference config file:
 Feel free to also pin version to latest release (-"@master" +"@vX.Y.Z"):
 
 - <https://github.com/marketplace/actions/fediverse-action>
+
+## Notes ##
+
+If you want to crosspost to other social network, it's possible using IFTT:
+
+- <https://twitter.com/search?q=%23FediVerseAction>
+- <https://ifttt.com/applets/K6FLEawj-mastodon-twitter-exclude-mentions>
+- <https://help.twitter.com/en/using-twitter/how-to-tweet?lang=browser#source-labels>
+- <https://nitter.net/search?q=%23FediVerseAction>
 
 ## Community ##
 
